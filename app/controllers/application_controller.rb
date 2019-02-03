@@ -18,4 +18,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  helper_method :logged_in?
+  
+
 end
