@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
     has_many :liquors
     has_secure_password
     validates :username, uniqueness :true
-    #can also be written as validates_uniqueness_of :username? or is this syntax rails?
+    #can this also be written as validates_uniqueness_of :username? or is this syntax rails?
 
     def slug
         username.downcase.gsub(" ","-")
