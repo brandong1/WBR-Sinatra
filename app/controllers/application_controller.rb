@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  helper_method :logged_in?
-  
+  helper_method :logged_in? #need to research different ways to define helper methods
+
 
 end
