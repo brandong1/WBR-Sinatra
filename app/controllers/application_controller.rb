@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      redirect to '/liquors'
+      redirect :'/liquors'
     else
       erb :welcome
     end
