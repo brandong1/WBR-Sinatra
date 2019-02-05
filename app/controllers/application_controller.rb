@@ -1,6 +1,8 @@
 require './config/environment'
-
+#require 'rack-flash'
 class ApplicationController < Sinatra::Base
+#enable :sessions
+#use Rack::Flash
 
   #From Sinatra README - ruby -e "require 'securerandom'; puts SecureRandom.hex(64)" to generate session_secret
   configure do
