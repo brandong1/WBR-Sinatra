@@ -32,7 +32,13 @@ class UserController < ApplicationController
     end
 
     post '/login' do
-        
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenicate(params[:password])
+            session[:user_id] = @user.id
+            redirect :'/wines'
+        else
+            redirect :'/'
+        end
     end
 
     get '/user/:slug' do
