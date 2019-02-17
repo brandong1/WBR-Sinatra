@@ -6,3 +6,20 @@
 [x] Learn about Bootstrap
 [x] Research what to do with welcome.erb and layout.erb
 [] Learn how to write tests
+
+PUT vs. PATCH
+
+PUT /users/1
+{
+    "username": "skwee357",
+    "email": "skwee357@gmail.com"       // new email address
+}
+
+//You can accomplish the same using PATCH. That might look like this:
+
+PATCH /users/1
+{
+    "email": "skwee357@gmail.com"       // new email address
+}
+Y
+//You'll notice a difference right away between these two. The PUT included all of the parameters on this user, but PATCH only included the one that was being modified (email).
