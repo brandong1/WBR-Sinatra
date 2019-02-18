@@ -7,6 +7,15 @@
 [x] Research what to do with welcome.erb and layout.erb
 [] Learn how to write tests
 
+*Have the option to add a liquor to your collection
+*Be able to create a new liquor that other users can add to their collection
+
+
+
+
+
+
+
 PUT vs. PATCH
 
 PUT /users/1
