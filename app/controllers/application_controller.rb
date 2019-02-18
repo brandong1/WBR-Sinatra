@@ -20,7 +20,14 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  helper_method :logged_in? #need to research different ways to define helper methods
+#need to research different ways to define helper methods
+helpers do
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
+    
+  end
 
-
+  def logged_in?
+    User.find(session[:user_id])
+  end
 end
