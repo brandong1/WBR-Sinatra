@@ -14,9 +14,10 @@ gem 'tux'
 gem 'fabrication'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
-group :test do
+group :development, :test do
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
+  gem 'sqlite3'
 end
