@@ -4,6 +4,14 @@ GIT
   specs:
     database_cleaner (1.7.0)
 
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: e2081e7989344c7f11990d974266ea728531f42c
+  branch: master
+  specs:
+    faker (1.9.3)
+      i18n (>= 0.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -117,6 +125,7 @@ DEPENDENCIES
   capybara
   database_cleaner!
   fabrication
+  faker!
   pry
   rack-test
   rake
