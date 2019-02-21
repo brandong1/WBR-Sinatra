@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'fabrication'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
 group :test do
   gem 'rspec'
