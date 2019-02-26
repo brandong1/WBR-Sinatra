@@ -5,5 +5,6 @@ class CreateLiquors < ActiveRecord::Migration
     t.string :description
     t.float :price
     t.integer :user_id
+    end
   end
 end
