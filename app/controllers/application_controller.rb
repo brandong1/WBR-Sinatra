@@ -13,11 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    if !logged_in?
-      erb :welcome
-    else
-      redirect to :'/liquors'
-    end
+    erb :welcome
   end
 
   helpers do
@@ -26,7 +22,7 @@ class ApplicationController < Sinatra::Base
     end
     
     def logged_in?
-    User.find(session[:user_id])
+      User.find(session[:user_id])
     end
   end
 
