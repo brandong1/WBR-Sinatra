@@ -2,9 +2,9 @@ class UserController < ApplicationController
     
     get '/signup' do 
         if logged_in?
-            redirect :'/views/liquors'
+            redirect back
         else
-            redirect :'/signup'
+            redirect :'/'
         end
     end
 
@@ -14,7 +14,7 @@ class UserController < ApplicationController
             @user = User.new(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
             if @user.save
                 session[:user_id] = @user.id
-                redirect :'/liquors'
+                redirect :'/liquors/liquors'
             else
                 redirect '/' #flash message here?
             end
