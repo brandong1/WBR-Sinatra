@@ -15,10 +15,17 @@ class LiquorController < ApplicationController
     # end
 
     post '/liquors/new' do
-        @liquors = Liquor.create(name: params['Name'])
-        @liquor.user = User.find_or_create_by(name: params['User Name'])
-        @liquor.save
-        erb :'/liquors/liquors'
+        if  !params[:name].empty? &&
+                !params[:description].empty? &&
+                !params[:price].empty?
+                @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price])
+            @liquor.user = current_user
+            if @liquor.save
+                redirect '/liquors/liquors'
+            end
+        else
+            redirect '/liquors/new'
+        end
     end
 
 
