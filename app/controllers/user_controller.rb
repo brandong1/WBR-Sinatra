@@ -25,9 +25,9 @@ class UserController < ApplicationController
 
     get '/login' do
         if logged_in?
-            redirect #WHERE??
+            redirect '/users/show'
         else
-            redirect '/' #add flash message about logging in
+            redirect '/' #add flash message about logging in?
         end
     end
 
