@@ -2,7 +2,7 @@ class LiquorController < ApplicationController
     
     get '/liquors' do
         @liquors = Liquor.all
-        erb :'/'
+        erb :'/liquors/liquors'
     end
 
     get '/liquors/new' do
@@ -14,7 +14,7 @@ class LiquorController < ApplicationController
     #     erb :'/liquors/show'
     # end
 
-    post '/liquors' do
+    post '/liquors/new' do
         @liquors = Liquor.create(name: params['Name'])
         @liquor.user = User.find_or_create_by(name: params['User Name'])
         @liquor.save
