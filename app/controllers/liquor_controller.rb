@@ -18,6 +18,7 @@ class LiquorController < ApplicationController
         @liquors = Liquor.create(name: params['Name'])
         @liquor.user = User.find_or_create_by(name: params['User Name'])
         @liquor.save
+        erb :'/liquors/liquors'
     end
 
 
