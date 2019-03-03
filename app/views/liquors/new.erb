@@ -1,9 +1,22 @@
+ <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/liquors/new">New Liquor</a></li>
+            <li><a href="/users/<%=current_user.slug%>">My Profile</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-toggle="modal" data-target="#myAccountFormModal"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 <h1>Create a Liquor</h1>
 
 <form action='/liquors/new' method='post'>
-   <li>Enter Liquor Name: <input type='text' name='Name' ></li>
-   <li>Enter Description of Liquor: <input type='text' name='Description'></li>
-   <li>Enter Price of Liquor: <input type='text' name='Price'></li>
+   <li>Enter Liquor Name: <input id='text' type='text' name='name' placeholder="Gud Whiskey"></li>
+   <li>Enter Description of Liquor: <input id='text' type=text name='description' placeholder="What do you like about it?"></li>
+   <li>Enter Price of Liquor: <input id='text' type=text name='price' placeholder="$20"></li>
    <br>
   <input type='submit' value='Create'>
 </form>
