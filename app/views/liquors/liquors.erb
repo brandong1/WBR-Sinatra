@@ -1,6 +1,8 @@
 <h3>Welcome, <%= @user %>!</h3>
 <% @liquors.each do |liquors| %>
   <li> <%= liquor.name %></li>
-  <li> <%= liquor.summary %></li>
-  <li> <%= liquor.rating %></li>
+  <li> <%= liquor.description %></li>
+  <li> <%= liquor.price %></li>
 <% end %>
+
+<li><a href="/liquors/new">Create a new liquor!</a></li>
