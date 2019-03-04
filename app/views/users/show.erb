@@ -1,9 +1,10 @@
 
-<h3>Welcome, <%= @user.username %>!</h3>
-<% @liquors.each do |liquor| %>
-  <li> <%= liquor.name %></li>
-  <li> <%= liquor.description %></li>
-  <li> <%= liquor.price %></li>
+<h3>Welcome, <%= @user.username.upcase %>!</h3>
+<br>
+<h4>Here's a list of all users!</h4>
+<% @users.each do |user| %>
+  <li> <%= user.username %></li>
+  
 <% end %>
 
 <li><a href="/liquors/new">Create a new liquor!</a></li>
