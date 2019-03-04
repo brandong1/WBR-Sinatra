@@ -20,9 +20,9 @@ class LiquorController < ApplicationController
                 !params[:description].empty? &&
                 !params[:price].empty?
                 @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price])
-            @liquor.user = current_user
+            @liquor.user = current_user.id
             if @liquor.save
-                redirect '/liquors/liquors'
+                redirect '/users/show'
             end
         else
             redirect '/liquors/new'
