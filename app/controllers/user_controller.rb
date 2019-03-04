@@ -21,6 +21,15 @@ class UserController < ApplicationController
         end
     end
 
+    patch '/signup' do
+        if logged_in?
+            @user = current_user
+            @user.update(name: params[:name], email: params[:email], password: params[:password])
+            @user.save
+            redirect back
+        end
+    end
+
     get '/login' do
         if logged_in?
             redirect '/users/show'
