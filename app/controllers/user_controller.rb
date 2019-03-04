@@ -12,7 +12,7 @@ class UserController < ApplicationController
         #if username and pw are not blank, create user, save user, redirect to liquor index
         if !params[:username].empty? && !params[:password].empty?
             @user = User.new(username: params[:username], email: params[:email], password: params[:password])
-            @liquors = Liquor.all
+            @users = User.all
             @user.save
             session[:user_id] = @user.id
             erb :'/users/show'
