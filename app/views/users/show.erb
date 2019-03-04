@@ -1,6 +1,6 @@
 
-<h3>Welcome, <%= @user %>!</h3>
-<% @liquors.each do |liquors| %>
+<h3>Welcome, <%= @user.username %>!</h3>
+<% @liquors.each do |liquor| %>
   <li> <%= liquor.name %></li>
   <li> <%= liquor.description %></li>
   <li> <%= liquor.price %></li>
