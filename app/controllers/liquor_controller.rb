@@ -6,6 +6,7 @@ class LiquorController < ApplicationController
     end
 
     get '/liquors/new' do
+        @user = current_user
         erb :'/liquors/new'
     end
 
