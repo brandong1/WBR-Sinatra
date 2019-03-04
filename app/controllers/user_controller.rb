@@ -11,15 +11,13 @@ class UserController < ApplicationController
     post '/signup' do 
         #if username and pw are not blank, create user, save user, redirect to liquor index
         if !params[:username].empty? && !params[:password].empty?
-            @user = User.new(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
-            if @user.save
-                session[:user_id] = @user.id
-                redirect :'/liquors/liquors'
-            else
-                redirect '/' #flash message here?
-            end
+            @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+            @liquors = Liquor.all
+            @user.save
+            session[:user_id] = @user.id
+            erb :'/users/show'
         else
-            redirect '/'
+            redirect '/' #flash message here?
         end
     end
 
