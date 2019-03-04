@@ -17,13 +17,13 @@ class LiquorController < ApplicationController
 
     post '/liquors/new' do
         if  !params[:name].empty? &&
-                !params[:description].empty? &&
-                !params[:price].empty?
+            !params[:description].empty? &&
+            !params[:price].empty?
+                @user = current_user
                 @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price])
-            @liquor.user = current_user.id
-            if @liquor.save
-                redirect '/users/show'
-            end
+                @liquors = Liquor.all
+                @liquor.save
+                erb :'/liquors/show'
         else
             redirect '/liquors/new'
         end
