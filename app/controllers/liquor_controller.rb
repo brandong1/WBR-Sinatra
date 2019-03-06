@@ -2,7 +2,7 @@ class LiquorController < ApplicationController
     
     get '/liquors' do
         @liquors = Liquor.all
-        erb :'/liquors/liquors'
+        erb :'/liquors/show'
     end
 
     get '/liquors/new' do
