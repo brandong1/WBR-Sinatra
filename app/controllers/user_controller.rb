@@ -15,7 +15,8 @@ class UserController < ApplicationController
                 @users = User.all
                 @user.save
                 session[:user_id] = @user.id
-                erb :'/users/show'
+                @liquors = Liquor.all
+                erb :'/liquors/show'
         else
             redirect '/' #flash message here?
         end
