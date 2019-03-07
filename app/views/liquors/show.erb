@@ -1,6 +1,7 @@
 <!--liquors.erb and users/show.erb are the same-->
 
-<h3>Welcome, <%= @user %>!</h3>
+<h3>Here's a list of all the whiskey in our database!</h3>
+<br>
 <% @liquors.each do |liquor| %>
   <li> <%= liquor.name %></li>
   <li> <%= liquor.description %></li>
