@@ -54,10 +54,35 @@ class UserController < ApplicationController
         erb :'/users/index'
     end
     
-    get '/user/:slug' do
-        @user = User.find_by_slug(params[:slug])
-        @user = current_user
-        erb :'/users/show'
+    get '/:username' do
+        if logged_in?
+            @user = current_user
+            erb :'/users/show'
+        else
+            redirect '/'
+        end
+    end
+
+    get '/:username/edit' do
+        if logged_in?
+            erb :"/users/edit"
+        else
+            flash[:message] = "You must be logged in to view this page!"
+            redirect '/'
+        end
+    end
+
+    post '/:username/edit' do
+        if !logged_in?
+            redirect '/'
+        else
+            @user = current_user
+            @user.username = params[:username]
+            @user.email = params[:email]
+            @user.password = params[:password]
+            @user.save
+            redirect '/'
+        end
     end
 
     get '/logout' do
