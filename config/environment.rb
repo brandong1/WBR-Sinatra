@@ -10,5 +10,5 @@ ActiveRecord::Base.establish_connection(
 )
 
 require './app/controllers/application_controller'
-require 'rack-flash'
+#require 'rack-flash'
 require_all 'app'
