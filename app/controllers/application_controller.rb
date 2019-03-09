@@ -2,7 +2,7 @@ require './config/environment'
 #require 'rack-flash'
 class ApplicationController < Sinatra::Base
 #enable :sessions
-#use Rack::Flash
+#se Rack::Flash, :sweep => true #This will sweep stale flash entries, whether or not you actually use them.
 
   #From Sinatra README - ruby -e "require 'securerandom'; puts SecureRandom.hex(64)" to generate session_secret
   configure do
@@ -17,12 +17,22 @@ class ApplicationController < Sinatra::Base
   end
   
   helpers do
+
     def current_user
-      session[:user_id]
+      @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]  #if @current_user returns false, calls User.find_by_id if User.id exists in session hash.
     end
-    
+
     def logged_in?
-      User.find(session[:user_id])
+      !!current_user #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
     end
   end
+  # helpers do
+  #   def current_user
+  #     session[:user_id]
+  #   end
+    
+  #   def logged_in?
+  #     session[:user_id] = User.id
+  #   end
+  # end
 end
