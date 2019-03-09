@@ -1,8 +1,9 @@
 <h3>Hi, <%= @user.username %>, please make your changes below!
 <form method="POST" action="/signup">
-    <label>Username: <input type="text" name="username" placeholder="Mike" required/></label><br>
-    <label>Email: <input type="text" name="email" placeholder="mike@mike.com"/></label><br>
-    <label>Password: <input type="text" name="password" placeholder="strong password" required/></label><br>
-    <br>
-    <input type="submit" id="Submit" />
-  </form>
+  <input type="hidden" name="_method" value="PATCH">
+  <label>Username: <input type="text" name="username" placeholder="Mike" required/></label><br>
+  <label>Email: <input type="text" name="email" placeholder="mike@mike.com"/></label><br>
+  <label>Password: <input type="text" name="password" placeholder="strong password" required/></label><br>
+  <br>
+  <input type="submit" id="Submit" />
+</form>
