@@ -1,7 +1,5 @@
-
-<h3>Welcome, <%= @user.username.upcase %>!</h3>
-<br>
 <h4>Here's a list of all users!</h4>
+<br>
 <% @users.each do |user| %>
   <li> <%= user.username %></li>
   
@@ -9,4 +7,4 @@
 
 <li><a href="/liquors/new">Create a new liquor!</a></li>
 <br>
-<li><a href="/users/edit">Edit your account information!</a></li>
+<li><a href="/signup">Edit your account information!</a></li>
