@@ -76,18 +76,18 @@ class UserController < ApplicationController
         end
     end
 
-    post '/:username/edit' do
-        if !logged_in?
-            redirect '/'
-        else
-            @user = current_user
-            @user.username = params[:username]
-            @user.email = params[:email]
-            @user.password = params[:password]
-            @user.save
-            redirect '/'
-        end
-    end
+    # patch '/:username/edit' do
+    #     if !logged_in?
+    #         redirect '/'
+    #     else
+    #         @user = current_user
+    #         @user.username = params[:username]
+    #         @user.email = params[:email]
+    #         @user.password = params[:password]
+    #         @user.save
+    #         redirect '/'
+    #     end
+    # end
 
     get '/logout' do
         if logged_in?
