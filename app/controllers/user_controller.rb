@@ -67,11 +67,12 @@ class UserController < ApplicationController
         end
     end
 
-    get '/:username/edit' do
+    get '/users/edit' do
         if logged_in?
+            @user = User.find(params[:id])
             erb :"/users/edit"
         else
-            flash[:message] = "You must be logged in to view this page!"
+            #flash[:message] = "You must be logged in to view this page!"
             redirect '/'
         end
     end
