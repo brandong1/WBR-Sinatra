@@ -2,9 +2,9 @@ class UserController < ApplicationController
     
     get '/signup' do 
         if logged_in?
-            redirect back
+            redirect '/views/index'
         else
-            redirect :'/'
+            redirect '/'
         end
     end
 
@@ -16,7 +16,7 @@ class UserController < ApplicationController
                 @user.save
                 session[:user_id] = @user.id
                 @liquors = Liquor.all
-                erb :'/liquors/show'
+                redirect to '/views/index'
         else
             redirect '/' #flash message here?
         end
@@ -29,6 +29,10 @@ class UserController < ApplicationController
             @user.save
             redirect back
         end
+    end
+
+    get '/views/index' do
+        erb :index
     end
 
     get '/login' do
