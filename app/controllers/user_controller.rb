@@ -27,7 +27,7 @@ class UserController < ApplicationController
             @user = current_user
             @user.update(name: params[:name], email: params[:email], password: params[:password])
             @user.save
-            redirect back
+            erb :'users/show'
         # else
         #     flash[:message] = "Please try again."
         end
@@ -71,26 +71,26 @@ class UserController < ApplicationController
 
     get '/users/edit' do
         if logged_in?
-            session[:user_id] = User.id
-            erb :"/users/edit"
+            @user = User.find_by(username: params[:username])
+            erb :'/users/edit'
         else
             #flash[:message] = "You must be logged in to view this page!"
             redirect '/'
         end
     end
 
-    # patch '/:username/edit' do
-    #     if !logged_in?
-    #         redirect '/'
-    #     else
-    #         @user = current_user
-    #         @user.username = params[:username]
-    #         @user.email = params[:email]
-    #         @user.password = params[:password]
-    #         @user.save
-    #         redirect '/'
-    #     end
-    # end
+    patch '/users/edit' do
+        if !logged_in?
+            redirect '/'
+        else
+            @user = current_user
+            @user.username = params[:username]
+            @user.email = params[:email]
+            @user.password = params[:password]
+            @user.save
+            redirect '/users/show'
+        end
+    end
 
     get '/logout' do
         if logged_in?
@@ -100,4 +100,7 @@ class UserController < ApplicationController
             redirect '/'
         end
     end
+
+   
+
 end
