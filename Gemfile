@@ -13,6 +13,7 @@ gem 'bcrypt'
 gem 'tux'
 gem 'fabrication'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'rack-flash'
 
 group :development, :test do
   gem 'rspec'
