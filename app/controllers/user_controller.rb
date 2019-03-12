@@ -34,6 +34,7 @@ class UserController < ApplicationController
     end
 
     get '/views/index' do
+        @user = current_user
         erb :index
     end
 
@@ -47,7 +48,7 @@ class UserController < ApplicationController
 
     post '/login' do
         @user = User.find_by(username: params[:username])
-        if @user && @user.authenicate(params[:password])
+        if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect :'/views/index'
         else
@@ -72,6 +73,8 @@ class UserController < ApplicationController
     get '/users/edit' do
         if logged_in?
             @user = User.find_by(username: params[:username])
+            @user.email = params[:users][:email]
+            @user.password = params[:users][:password]
             erb :'/users/edit'
         else
             #flash[:message] = "You must be logged in to view this page!"
