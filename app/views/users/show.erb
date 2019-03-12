@@ -1,1 +1,7 @@
-<h1>Show username and list of all the liquors that user has added to their collection</h1>
+<h1>Welcome, <%= @user.username.capitalize %>!</h1>
+
+<h3>Here are all the liquors you've tried:</h3>
+
+<% @user.liquors.each do |liquor| %>
+    <% liquor.name %>
+<% end %>
