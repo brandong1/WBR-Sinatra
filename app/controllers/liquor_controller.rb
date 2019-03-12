@@ -21,7 +21,7 @@ class LiquorController < ApplicationController
             !params[:price].empty?
                 @user = current_user
                 @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price])
-                @liquors = Liquor.all
+                @liquors = Liquor.all                
                 @liquor.save
                 erb :'/liquors/show'
         else
