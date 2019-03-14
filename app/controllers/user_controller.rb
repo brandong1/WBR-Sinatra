@@ -70,9 +70,9 @@ class UserController < ApplicationController
         end
     end
 
-    get '/users/edit' do
+    get '/users/edit/:id' do
         if logged_in?
-            @user = User.find_by(username: params[:username])
+            @user = User.find_by(id: params[:id])
             @user.email = params[:users][:email]
             @user.password = params[:users][:password]
             erb :'/users/edit'
@@ -87,9 +87,7 @@ class UserController < ApplicationController
             redirect '/'
         else
             @user = current_user
-            @user.username = params[:username]
-            @user.email = params[:email]
-            @user.password = params[:password]
+            @user.update(email: params[:email], password: params[:password])
             @user.save
             redirect '/users/show'
         end
