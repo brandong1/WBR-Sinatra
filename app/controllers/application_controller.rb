@@ -26,6 +26,7 @@ class ApplicationController < Sinatra::Base
       !!current_user #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
     end
   end
+  
   # helpers do
   #   def current_user
   #     session[:user_id]
