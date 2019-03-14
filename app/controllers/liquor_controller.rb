@@ -29,5 +29,20 @@ class LiquorController < ApplicationController
         end
     end
 
+    delete '/liquors/:id' do
+        if logged_in?
+          @user = current_user
+          @liquor = Liquor.find(params[:id])
+          if @liquor.user_id == current_user.id
+             @liquor = Liquor.delete(params[:id])
+             redirect '/liquors'
+          else
+            redirect '/liquors'
+          end
+        else
+          redirect back
+        end
+    end
+
 
 end
