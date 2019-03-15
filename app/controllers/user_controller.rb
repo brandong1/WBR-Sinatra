@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    
+
     get '/signup' do 
         if logged_in?
             redirect '/views/index'
@@ -70,7 +70,7 @@ class UserController < ApplicationController
         end
     end
 
-    get '/users/edit/:id' do
+    get '/users/<%= @user.id %>/edit' do #is this right?
         if logged_in?
             @user = User.find_by(id: params[:id])
             @user.email = params[:users][:email]
@@ -82,7 +82,7 @@ class UserController < ApplicationController
         end
     end
 
-    patch '/users/edit' do
+    patch '/users/<%= @user.id %>/edit' do #is this right?
         if !logged_in?
             redirect '/'
         else
