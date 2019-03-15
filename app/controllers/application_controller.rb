@@ -1,6 +1,7 @@
 require './config/environment'
 #require 'rack-flash'
 class ApplicationController < Sinatra::Base
+  set :method_override, true
 #enable :sessions
 #se Rack::Flash, :sweep => true #This will sweep stale flash entries, whether or not you actually use them.
 
