@@ -1,5 +1,5 @@
 <h3>Please make your changes below!
-<form method="POST" action="/users/show">
+<form method="POST" action="/users/<%= @user.id %>/edit">
   <input type="hidden" name="_method" value="PATCH">
   <label>Email: <input type="text" name="email" placeholder="mike@mike.com"/></label><br>
   <label>Password: <input type="text" name="password" placeholder="strong password" required/></label><br>
