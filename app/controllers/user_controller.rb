@@ -58,6 +58,7 @@ class UserController < ApplicationController
 
     get '/users' do
         @users = User.all
+        #binding.pry
         erb :'/users/index'
     end
     
@@ -70,17 +71,25 @@ class UserController < ApplicationController
         end
     end
 
-    get '/users/<%= @user.id %>/edit' do #is this right?
+    get '/users/:id' do
         if logged_in?
-            @user = User.find_by(id: params[:id])
-            @user.email = params[:users][:email]
-            @user.password = params[:users][:password]
+            @user = current_user
+            session[:user_id] = @user.id
+            @user.email = current_user.email
+            @user.password = current_user.password
             erb :'/users/edit'
+            #binding.pry
         else
             #flash[:message] = "You must be logged in to view this page!"
             redirect '/'
         end
     end
+
+    get '/users/:id/edit' do
+        @users = User.find(params.fetch[:id])
+        erb :'/users/edit'
+    end
+
 
     patch '/users/<%= @user.id %>/edit' do #is this right?
         if !logged_in?
