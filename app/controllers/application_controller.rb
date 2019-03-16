@@ -30,13 +30,13 @@ class ApplicationController < Sinatra::Base
     
     def authorized_to_edit?(liquor)
       liquor.user == current_user
-  end
-  
+    end
+
     def redirect_if_not_authorized_to_edit(liquor)
       if !authorized_to_edit?(liquor)
       flash[:errors] = "You must be the user to edit that conference."
       redirect '/'
       end
     end
-    
+  
 end

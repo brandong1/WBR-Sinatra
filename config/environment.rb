@@ -1,4 +1,5 @@
 ENV['SINATRA_ENV'] ||= "development"
+ENV['SESSION_SECRET'] ||= "d@h33t"
 SINATRA_ACTIVESUPPORT_WARNING=false
 
 require 'bundler/setup'
