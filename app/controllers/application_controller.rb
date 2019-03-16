@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
     set :public_folder, 'public'
     set :views, 'app/views'
+    register Sinatra::Flash
   end
 
   get "/" do
