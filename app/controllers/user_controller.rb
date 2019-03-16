@@ -57,6 +57,7 @@ class UserController < ApplicationController
     end
 
     get '/users' do
+        #@user.username = User.find_by(username: params[:username])
         @users = User.all
         #binding.pry
         erb :'/users/index'
