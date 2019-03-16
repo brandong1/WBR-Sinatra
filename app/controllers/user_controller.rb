@@ -85,6 +85,12 @@ class UserController < ApplicationController
         end
     end
 
+    post '/users/:id' do
+        # @user = User.find_by_id(id: params[:id])
+        # session[:user_id] = @user.id
+        erb :'/users/show'
+    end
+
     get '/users/:id/edit' do
         @users = User.find(params.fetch[:id])
         erb :'/users/edit'
