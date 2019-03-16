@@ -27,6 +27,9 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!current_user #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
     end
+    
+    def authorized_to_edit?(liquor)
+      liquor.user == current_user
   end
   
   # helpers do
