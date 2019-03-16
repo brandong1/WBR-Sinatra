@@ -98,10 +98,14 @@ class UserController < ApplicationController
 
 
     patch '/users/:id' do #done
+        if logged_in?
             @user = current_user
             @user.update(email: params[:email], password: params[:password])
             @user.save
             erb :'/users/show'
+        else
+            redirect '/'
+        end
     end
 
     get '/logout' do
