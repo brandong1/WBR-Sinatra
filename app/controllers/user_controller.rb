@@ -60,8 +60,12 @@ class UserController < ApplicationController
         #@user.username = User.find_by(username: params[:username])
         @users = User.all
         #binding.pry
-        erb :'/users/index'
+        redirect :'/users/index'
     end
+
+    # get '/users/show' do
+    #     @user.username = User.find_by(username: params[:username])
+    # end
     
     # get '/:username' do
     #     if logged_in?
@@ -72,13 +76,14 @@ class UserController < ApplicationController
     #     end
     # end
 
-    get '/users/:id' do
+    get '/users/index' do
         if logged_in?
             @user = current_user
+            @users = User.all
             session[:user_id] = @user.id
             @user.email = current_user.email
             @user.password = current_user.password
-            erb :'/users/edit'
+            erb :'/users/index' 
             #binding.pry
         else
             #flash[:message] = "You must be logged in to view this page!"
@@ -87,8 +92,8 @@ class UserController < ApplicationController
     end
 
     post '/users/:id' do
-        # @user = User.find_by_id(id: params[:id])
-        # session[:user_id] = @user.id
+        @user = User.find_by_id(id: params[:id])
+        session[:user_id] = @user.id
         erb :'/users/show'
     end
 
