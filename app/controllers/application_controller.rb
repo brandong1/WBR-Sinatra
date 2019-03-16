@@ -32,13 +32,11 @@ class ApplicationController < Sinatra::Base
       liquor.user == current_user
   end
   
-  # helpers do
-  #   def current_user
-  #     session[:user_id]
-  #   end
+    def redirect_if_not_authorized_to_edit(liquor)
+      if !authorized_to_edit?(liquor)
+      flash[:errors] = "You must be the user to edit that conference."
+      redirect '/'
+      end
+    end
     
-  #   def logged_in?
-  #     session[:user_id] = User.id
-  #   end
-  # end
 end
