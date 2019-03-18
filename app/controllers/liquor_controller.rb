@@ -6,8 +6,11 @@ class LiquorController < ApplicationController
     end
 
     get '/liquors/new' do
-        @user = current_user
+        if logged_in?
         erb :'/liquors/new'
+        else
+            redirect '/'
+    end
     end
 
     # get '/liquors/:slug' do
