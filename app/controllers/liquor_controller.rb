@@ -15,12 +15,12 @@ class LiquorController < ApplicationController
     #     erb :'/liquors/show'
     # end
 
-    post '/liquors/new' do
+    post '/liquors/show' do
         if  !params[:name].empty? &&
             !params[:description].empty? &&
             !params[:price].empty?
-                @user = current_user
-                @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price])
+                @user = User.find_by_id(session[:user_id])
+                @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price], user_id: @user.id)
                 @liquors = Liquor.all                
                 @liquor.save
                 erb :'/liquors/show'
