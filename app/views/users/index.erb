@@ -1,7 +1,7 @@
 <h4><%= @user.username %>, here's a list of all users!</h4>
 <br>
 <% @users.each do |user| %>
-  <li> <%= user.username %></li>
+  <li> <a href="/users/show"><%= user.username %></li>
   
 <% end %>
 
