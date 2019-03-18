@@ -18,6 +18,12 @@ class LiquorController < ApplicationController
     #     erb :'/liquors/show'
     # end
 
+    get '/liquors/liquor_show' do
+        
+        erb :'/liquors/liquor_show'
+
+    end
+
     post '/liquors/show' do
         if  !params[:name].empty? &&
             !params[:description].empty? &&
