@@ -64,9 +64,15 @@ class UserController < ApplicationController
         redirect :'/users/index'
     end
 
-    # get '/users/show' do
-    #     @user.username = User.find_by(username: params[:username])
-    # end
+    get '/users/show' do
+        if logged_in?
+            @user = current_user.username #need to fix this to show whichever user's show page
+            @user.liquors = Liquor.find(params[:user_id])
+            @user = User.find_by(username: params[:username])
+        #binding.pry
+            erb :'/users/show'
+        end
+    end
     
     # get '/:username' do
     #     if logged_in?
