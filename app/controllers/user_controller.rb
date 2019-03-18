@@ -50,7 +50,8 @@ class UserController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect :'/views/index'
+            @users = User.all
+            erb :'/users/index'
         else
             redirect :'/'
         end
