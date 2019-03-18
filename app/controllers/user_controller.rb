@@ -98,8 +98,10 @@ class UserController < ApplicationController
         erb :'/users/show'
     end
 
-    get '/users/:id/edit' do
-        @users = User.find(params.fetch[:id])
+    get '/users/edit' do
+        @user = User.find_by(username: params[:username])
+        @user = current_user.username
+        
         erb :'/users/edit'
     end
 
