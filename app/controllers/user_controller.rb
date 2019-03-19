@@ -66,14 +66,22 @@ class UserController < ApplicationController
 
     get '/users/show' do
         if logged_in?
-            @user = current_user.username #need to fix this to show whichever user's show page
-            @user.liquors = Liquor.find(params[:user_id])
-            @user = User.find_by(username: params[:username])
-        #binding.pry
-            erb :'/users/show'
+             @user = current_user #need to fix this to show whichever user's show page
+            # @user == current_user
+            @liquors = current_user.liquors
+            #binding.pry
+                # if @liquors && @liquors.user == current_user
+            # @user = User.find_by(username: params[:username])
+                erb :'/users/show'
+                 else
+                    redirect :'/users/index'
+            # @savings = SavingsAccount.find_by_id(params[:id])
+            #       if @savings && @savings.user == current_user         
+            # erb :'savings_accounts/edit' 
         end
     end
     
+    #post '/users/'
     # get '/:username' do
     #     if logged_in?
     #         @user = current_user
