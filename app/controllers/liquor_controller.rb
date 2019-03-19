@@ -29,10 +29,10 @@ class LiquorController < ApplicationController
             !params[:description].empty? &&
             !params[:price].empty?
                 @user = User.find_by_id(session[:user_id])
-                @liquor = Liquor.new(name: params[:name], description: params[:description], price: params[:price], user_id: @user.id)
-                @liquors = Liquor.all                
-                @liquor.save
-                erb :'/liquors/show'
+            Liquor.create(name: params[:name], description: params[:description], price: params[:price], user_id: @user.id)
+            @liquors = current_user.liquors
+                        #binding.pry
+                erb :'/users/show'
         else
             redirect '/liquors/new'
         end
