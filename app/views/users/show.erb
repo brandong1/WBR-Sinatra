@@ -1,9 +1,9 @@
-<h2>Welcome, <%= @user.capitalize %>!</h2>
+<h2>Welcome, <%= current_user.username %>!</h2>
 <br>
 <h3>Here are all the liquors you've tried:</h3>
 
-<% @user.liquors.each do |liquor| %>
-    <% liquor.name %>
+<% @liquors.each do |liquor| %>
+    <a href="/liquors/liquor_show"><li><%= liquor.name %></li></a>
 <% end %>
 <br>
 <br>
