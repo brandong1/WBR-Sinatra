@@ -3,7 +3,7 @@ require './config/environment'
 class ApplicationController < Sinatra::Base
   set :method_override, true
 #enable :sessions
-#se Rack::Flash, :sweep => true #This will sweep stale flash entries, whether or not you actually use them.
+#use Rack::Flash, :sweep => true #This will sweep stale flash entries, whether or not you actually use them.
 
   #From Sinatra README - ruby -e "require 'securerandom'; puts SecureRandom.hex(64)" to generate session_secret
   configure do
