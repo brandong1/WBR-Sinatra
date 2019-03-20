@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def current_user
-      User.find(session[:user_id])  #if @current_user returns false, calls User.find_by_id if User.id exists in session hash.
+      User.find(session[:user_id])  
     end
 
     def logged_in?
