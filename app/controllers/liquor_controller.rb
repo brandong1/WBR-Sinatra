@@ -13,15 +13,9 @@ class LiquorController < ApplicationController
         end
     end
 
-    # get '/liquors/:slug' do
-    #     @song = Liquor.find_by_slug(params[:slug])
-    #     erb :'/liquors/show'
-    # end
-
-    get '/liquors/liquor_show' do
-        
-        erb :'/liquors/liquor_show'
-
+    get '/users/show' do
+        @liquors = current_user.liquors
+        erb :'/users/show'
     end
 
     post '/liquors/show' do
