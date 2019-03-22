@@ -43,8 +43,15 @@ class LiquorController < ApplicationController
         end
     end
     
-    patch '/liquors/:id/edit' do 
-        # @liquors.update(name: params[:name]...)
+    patch '/liquors/:id' do 
+        @liquors = Liquor.find_by_id(params[:id])
+            @user = User.find_by_id(session[:user_id])
+            if @liquors && @liquors.user == @user
+        @liquors.update(name: params[:name], description: params[:description], price: params[:price])
+        redirect '/users/show'
+            else
+            redirect '/'
+    end
     end
 
     get '/liquors/:id/delete' do
