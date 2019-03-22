@@ -60,6 +60,7 @@ class UserController < ApplicationController
     get '/users' do
         #@user.username = User.find_by(username: params[:username])
         @users = User.all
+        @liquors = Liquor.all
         #binding.pry
         redirect :'/users/index'
     end
