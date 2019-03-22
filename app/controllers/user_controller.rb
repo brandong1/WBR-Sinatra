@@ -99,6 +99,7 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             @user.email = current_user.email
             @user.password = current_user.password
+            @liquors = Liquor.all
             erb :'/users/index' 
             #binding.pry
         else
