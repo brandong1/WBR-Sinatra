@@ -51,7 +51,7 @@ class LiquorController < ApplicationController
         redirect '/users/show'
             else
             redirect '/'
-    end
+            end
     end
 
     get '/liquors/:id/delete' do
@@ -75,8 +75,9 @@ class LiquorController < ApplicationController
           if @liquor && @liquor.user == @user
             @liquor.delete
              redirect '/users/show'
-        else
-          redirect back
+          else
+            redirect back
+          end
         end
     end
 end
