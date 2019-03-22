@@ -3,7 +3,10 @@
 <h3>Here are all the liquors you've tried:</h3>
 
 <% @liquors.each do |liquor| %>
-    <a href="/liquors/liquor_show"><li><%= liquor.name %></li></a>
+    <li><%= liquor.name %> - $<%= liquor.price %></li>
+    <a href="/liquors/<%= liquor.id %>/edit"><button type="button">Edit</button></a>
+    <a href="/liquors/<%= liquor.id %>/delete"><button type="button">Delete</button></a><br>
+    <br>
 <% end %>
 <br>
 <br>
@@ -11,3 +14,4 @@
 <br>
 <a href="/liquors/new">Create a new liquor!</a>
 <br>
+<a href="/logout"><button type="button">Logout</button></a>
