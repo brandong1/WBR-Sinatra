@@ -14,6 +14,7 @@ class UserController < ApplicationController
                 @user = User.new(username: params[:username], email: params[:email], password: params[:password])
                 @users = User.all
                 @user.save
+                #binding.pry
                 session[:user_id] = @user.id
                 @liquors = Liquor.all
                 redirect to '/views/index'
@@ -22,16 +23,16 @@ class UserController < ApplicationController
         end
     end
 
-    patch '/signup' do
-        if logged_in?
-            @user = current_user
-            @user.update(name: params[:name], email: params[:email], password: params[:password])
-            @user.save
-            erb :'users/show'
-        # else
-        #     flash[:message] = "Please try again."
-        end
-    end
+    # patch '/signup' do
+    #     if logged_in?
+    #         @user = current_user
+    #         @user.update(name: params[:name], email: params[:email], password: params[:password])
+    #         @user.save
+    #         erb :'users/show'
+    #     # else
+    #     #     flash[:message] = "Please try again."
+    #     end
+    # end
 
     get '/views/index' do
         @user = current_user
@@ -51,6 +52,7 @@ class UserController < ApplicationController
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             @users = User.all
+            @liquors = Liquor.all
             erb :'/users/index'
         else
             redirect :'/'
