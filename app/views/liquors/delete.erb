@@ -1,1 +1,9 @@
-<%= @liquors.name %>
+<h1>Are you sure you want to delete "<%= @liquors.name %>"</h1>
+
+<form action='/liquors/<%= @liquors.id %>/delete' method='post'>
+<input id="hidden" type="hidden" name="_method" value="DELETE">
+
+  <input type='submit' value='Delete'> 
+  </form>
+  <br>
+  <a href="/logout"><button type="button">Logout</button></a>
