@@ -67,16 +67,14 @@ class LiquorController < ApplicationController
         
         end
     end
-    delete '/liquors/:id' do
+    delete '/liquors/:id/delete' do
         if logged_in?
           @user = current_user
+          #@user = User.find_by_id(session[:user_id])
           @liquor = Liquor.find(params[:id])
-          if @liquor.user_id == current_user.id
-             @liquor = Liquor.delete(params[:id])
-             redirect '/liquors'
-          else
-            redirect '/liquors'
-          end
+          if @liquor && @liquor.user == @user
+            @liquor.delete
+             redirect '/users/show'
         else
           redirect back
         end
