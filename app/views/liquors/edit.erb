@@ -1,0 +1,13 @@
+<h1>Edit Your Liquor</h1>
+
+<form action='/liquors/<%= @liquors.id %>' method='post'>
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+   <li>Enter Liquor Name: <input id='name' type='text' name='name' value="<%= @liquors.name%>" required></li>
+   <li>Enter Description of Liquor: <input id='description' type=text name='description' value="<%= @liquors.description%>" required></li>
+   <li>Enter Price of Liquor: <input id='price' type='number' name='price' value="<%= @liquors.price%>" required></li>
+   <br>
+  <input type='submit' value='Edit'> <br>
+<a href="/users/show"><button type="button" class="button">Go Back</button></a>
+  </form>
+  <br>
+  <a href="/logout"><button type="button">Logout</button></a>
