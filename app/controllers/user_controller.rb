@@ -13,11 +13,15 @@ class UserController < ApplicationController
         if !params[:username].empty? && !params[:password].empty?
                 @user = User.new(username: params[:username], email: params[:email], password: params[:password])
                 @users = User.all
-                @user.save
-                #binding.pry
+                if @user.save
+                # binding.pry
                 session[:user_id] = @user.id
                 @liquors = Liquor.all
                 redirect to '/views/index'
+                else
+                    puts "Error #{@user.errors}"
+                    redirect '/signup' 
+                end
         else
             redirect '/' #flash message here?
         end
