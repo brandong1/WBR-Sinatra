@@ -19,13 +19,15 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-
+    
+    #find raises an error if a nil id is passed, or no matching record is found. find_by doesn't raise an error in either of these situations.
     def current_user
-      User.find(session[:user_id])  
+      @current_user ||= User.find_by(id: session[:user_id])  
     end
 
     def logged_in?
-      !!current_user #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
+      
+      !current_user.nil? #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
     end
     
     # May add this functionality with Rails
