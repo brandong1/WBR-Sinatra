@@ -1,7 +1,7 @@
 [x] Research 'redirect back' for routing to previous page
 [x] Research HTML syntax for adding an asteriks to required field.
-[] Research unique username/email validation
-[] Research password complexity validation.
+[x] Research unique username/email validation
+[x] Research password complexity validation.
 [] Research validation failures w/error messages - https://github.com/SFEley/sinatra-flash
 [x] Learn about Bootstrap
 [x] Research what to do with welcome.erb and layout.erb
