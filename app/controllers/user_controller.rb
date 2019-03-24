@@ -132,6 +132,7 @@ class UserController < ApplicationController
         if logged_in?
             @user = current_user
             @user.update(email: params[:email], password: params[:password])
+            @liquors = current_user.liquors
             @user.save
             erb :'/users/show'
         else
