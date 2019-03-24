@@ -5,7 +5,7 @@
 <% @liquors.each do |liquor| %>
   <li> <%= liquor.name %></li>
   <li> <%= liquor.description %></li>
-  <li> <%= liquor.price %></li>
+  <li> $<%= liquor.price %></li>
   <br>
 <% end %>
 
