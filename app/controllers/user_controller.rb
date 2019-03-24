@@ -57,7 +57,7 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             @users = User.all
             @liquors = Liquor.all
-            erb :'/users/index'
+            erb :'/index'
         else
             redirect :'/'
         end
