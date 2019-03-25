@@ -26,8 +26,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def logged_in?
-      
-      !current_user.nil? #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
+      !current_user.nil? 
     end
   end
 end
