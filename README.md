@@ -1,6 +1,7 @@
 # Welcome to Whiskey, Bourbon & Rye!
 
 WBR is an application that allows you to track the liquors you've tried. It is built in Ruby and utilizes Sinatra, ActiveRecord, as well as custom HTML and CSS and bcrypt. It is based on the book of the same name, Whiskey, Bourbon & Rye by Clay Risen.
+
 ![Imgur](https://i.imgur.com/HIWaZeW.jpg)
 
 ## Installation
