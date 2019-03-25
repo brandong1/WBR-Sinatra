@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
 
   helpers do
     
-    #find raises an error if a nil id is passed, or no matching record is found. find_by doesn't raise an error in either of these situations.
+    
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])  
     end
@@ -29,17 +29,5 @@ class ApplicationController < Sinatra::Base
       
       !current_user.nil? #since current_user returns true, !current_user would make current_user false, but !!current_user makes it true. Basically user is logged in if user is "not not the current user"
     end
-    
-    # May add this functionality with Rails
-    # def authorized_to_edit?(liquor)
-    #   liquor.user == current_user
-    # end
-
-    # def redirect_if_not_authorized_to_edit(liquor)
-    #   if !authorized_to_edit?(liquor)
-    #   flash[:errors] = "You must be the user to edit that liquor."
-    #   redirect '/'
-    #   end
-    # end
   end
 end
