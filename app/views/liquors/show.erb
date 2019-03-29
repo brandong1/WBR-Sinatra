@@ -1,7 +1,7 @@
 <h3>Here's a list of all the whiskey in our database!</h3>
 <br>
 <% @liquors.each do |liquor| %>
-  <li> <%= liquor.name %></li>
+  <li> <%= liquor.name %> - Created by: <%= liquor.user.username %> </li>
   <li> <%= liquor.description %></li>
   <li> $<%= liquor.price %></li>
   <br>
@@ -9,7 +9,7 @@
 
 <li><a href="/liquors/new">Create a new liquor!</a></li>
 <br>
-<a href="/views/index">Main Menu</a>
+<a href="/home">Main Menu</a>
 <br>
 <a href="/logout"><button type="button">Logout</button></a>
 <!--FEATURE REQUEST: Add feature that allows a user to add a liquor that another user created to their collection.
