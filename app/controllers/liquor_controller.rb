@@ -6,14 +6,12 @@ class LiquorController < ApplicationController
     end
 
     get '/liquors/new' do
-        if logged_in?
-            erb :'/liquors/new'
-        else
-            redirect '/'
-        end
+        redirect_if_not_logged_in
+        erb :'/liquors/new'
     end
 
     get '/users/show' do
+        redirect_if_not_logged_in
         @liquors = current_user.liquors
         erb :'/users/show'
     end
@@ -37,6 +35,8 @@ class LiquorController < ApplicationController
             @liquors = Liquor.find_by_id(params[:id])     
             if @liquors && @liquors.user == current_user
                 erb :'/liquors/edit'
+            else 
+                redirect '/liquors'
             end
         else
             redirect '/'
