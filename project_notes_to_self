@@ -11,7 +11,8 @@
 *Be able to create a new liquor that other users can add to their collection
 
 
-[] Find out why liquors duplicate when refreshing liquor/show page
+[x] Find out why liquors duplicate when refreshing liquor/show page
+    - fixed, but not sure why
 
 
 
