@@ -2,7 +2,7 @@ class UserController < ApplicationController
 
     get '/signup' do 
         if logged_in?
-            redirect '/views/index'
+            redirect '/home'
         else
             redirect '/'
         end
@@ -16,7 +16,7 @@ class UserController < ApplicationController
                 if @user.save
                 session[:user_id] = @user.id
                 @liquors = Liquor.all
-                redirect to '/views/index'
+                redirect to '/home'
                 else
                     puts "Error #{@user.errors}" # this error will appear in the terminal
                     redirect '/signup' 
@@ -26,7 +26,7 @@ class UserController < ApplicationController
         end
     end
 
-    get '/views/index' do
+    get '/home' do
         @user = current_user
         erb :index
     end
@@ -45,9 +45,9 @@ class UserController < ApplicationController
             session[:user_id] = @user.id
             @users = User.all
             @liquors = Liquor.all
-            erb :'/index'
+            redirect '/home'
         else
-            redirect :'/'
+            redirect '/'
         end
     end
 
