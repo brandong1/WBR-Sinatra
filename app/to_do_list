@@ -1,4 +1,5 @@
 [] Secure pw
 [] Clean up route naming convention to be more restful
 [] never render from Post action
-[] PRACTICE: User show pages
+[] Study the Secure Password labs/readmes and be ready to explain what 'has_secure_password' does and how '.authenticate' works.
+[] PRACTICE/Optional: User show pages
