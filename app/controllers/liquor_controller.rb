@@ -24,7 +24,7 @@ class LiquorController < ApplicationController
             Liquor.create(name: params[:name], description: params[:description], price: params[:price], user_id: @user.id)
             @liquors = current_user.liquors
                         #binding.pry
-                erb :'/users/show'
+                redirect to '/users/show'
         else
             redirect '/liquors/new'
         end
