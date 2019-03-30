@@ -10,12 +10,6 @@ class LiquorController < ApplicationController
         erb :'/liquors/new'
     end
 
-    get '/users/show' do
-        redirect_if_not_logged_in
-        @liquors = current_user.liquors
-        erb :'/users/show'
-    end
-
     post '/liquors/show' do
         if  !params[:name].empty? &&
             !params[:description].empty? &&
@@ -67,6 +61,7 @@ class LiquorController < ApplicationController
         
         end
     end
+    
     delete '/liquors/:id/delete' do
         if logged_in?
           @user = current_user
