@@ -85,7 +85,7 @@ class UserController < ApplicationController
     post '/users/:id' do
         @user = User.find_by_id(id: params[:id])
         session[:user_id] = @user.id
-        erb :'/users/show'
+        redirect to :'/users/show'
     end
 
     get '/users/edit' do
@@ -101,7 +101,7 @@ class UserController < ApplicationController
             @user.update(email: params[:email], password: params[:password])
             @liquors = current_user.liquors
             @user.save
-            erb :'/users/show'
+            redirect to :'/users/show'
         else
             redirect '/'
         end
