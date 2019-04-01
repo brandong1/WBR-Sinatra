@@ -51,46 +51,53 @@ class UserController < ApplicationController
         end
     end
 
-    get '/users' do
+    get '/users' do #RESTful
+        @user = current_user
         @users = User.all
+        session[:user_id] = @user.id
+        @user.email = current_user.email
+        @user.password = current_user.password
         @liquors = Liquor.all
-        redirect :'/users/index'
+        erb :'/users/index'
     end
 
-    get '/users/show' do
+    get '/users/:id' do #RESTful
         if logged_in?
              @user = current_user 
              @liquors = current_user.liquors
+             session[:user_id] = @current_user.id
              erb :'/users/show'
          else
              redirect :'/users/index'
         end
     end
  
-    get '/users/index' do
-        if logged_in?
-            @user = current_user
-            @users = User.all
-            session[:user_id] = @user.id
-            @user.email = current_user.email
-            @user.password = current_user.password
-            @liquors = Liquor.all
-            erb :'/users/index' 
+    # get '/users/index' do
+    #     if logged_in?
+    #         @user = current_user
+    #         @users = User.all
+    #         session[:user_id] = @user.id
+    #         @user.email = current_user.email
+    #         @user.password = current_user.password
+    #         @liquors = Liquor.all
+    #         erb :'/users/index' 
 
-        else
-            redirect '/'
-        end
-    end
+    #     else
+    #         redirect '/'
+    #     end
+    # end
 
-    post '/users/:id' do
-        @user = User.find_by_id(id: params[:id])
+    get '/users/:id/edit' do #RESTful
+        @user = User.find_by(id: params[:id])
+        @liquors = Liquor.all
         session[:user_id] = @user.id
-        redirect to :'/users/show'
+        erb :'/users/show'
     end
 
     get '/users/edit' do
         @user = User.find_by(username: params[:username])
         @user = current_user.username
+        session[:user_id] = current_user.id
         
         erb :'/users/edit'
     end
@@ -101,7 +108,7 @@ class UserController < ApplicationController
             @user.update(email: params[:email], password: params[:password])
             @liquors = current_user.liquors
             @user.save
-            redirect to :'/users/show'
+            redirect to :'/users'
         else
             redirect '/'
         end
