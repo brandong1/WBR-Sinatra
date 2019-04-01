@@ -1,6 +1,7 @@
 class LiquorController < ApplicationController
     
     get '/liquors' do
+        redirect_if_not_logged_in
         @liquors = Liquor.all
         erb :'/liquors/index'
     end
@@ -10,7 +11,7 @@ class LiquorController < ApplicationController
         erb :'/liquors/new'
     end
 
-    post '/liquors/show' do
+    post '/liquors' do #RESTful
         if  !params[:name].empty? &&
             !params[:description].empty? &&
             !params[:price].empty?
@@ -18,7 +19,7 @@ class LiquorController < ApplicationController
             Liquor.create(name: params[:name], description: params[:description], price: params[:price], user_id: @user.id)
             @liquors = current_user.liquors
                         #binding.pry
-                redirect to '/users/show'
+                redirect '/liquors'
         else
             redirect '/liquors/new'
         end
@@ -26,8 +27,8 @@ class LiquorController < ApplicationController
 
     get '/liquors/:id/edit' do
         if logged_in?
-            @liquors = Liquor.find_by_id(params[:id])     
-            if @liquors && @liquors.user == current_user
+            @liquor = Liquor.find_by_id(params[:id])     
+            if @liquor && @liquor.user == current_user
                 erb :'/liquors/edit'
             else 
                 redirect '/liquors'
@@ -62,14 +63,15 @@ class LiquorController < ApplicationController
         end
     end
     
-    delete '/liquors/:id/delete' do
+    delete '/liquors/:id/delete' do #RESTful
         if logged_in?
           @user = current_user
+          @liquors = Liquor.all
           #@user = User.find_by_id(session[:user_id])
           @liquor = Liquor.find(params[:id])
           if @liquor && @liquor.user == @user
             @liquor.delete
-             redirect '/users/show'
+             redirect to '/liquors'
           else
             redirect back
           end
