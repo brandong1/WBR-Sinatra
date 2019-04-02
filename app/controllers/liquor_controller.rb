@@ -66,7 +66,6 @@ class LiquorController < ApplicationController
     delete '/liquors/:id/delete' do #RESTful
         if logged_in?
           @user = current_user
-          @liquors = Liquor.all
           #@user = User.find_by_id(session[:user_id])
           @liquor = Liquor.find(params[:id])
           if @liquor && @liquor.user == @user
