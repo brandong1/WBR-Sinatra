@@ -1,16 +1,13 @@
 <h4><%= @user.username %>, here's a list of all users!</h4>
 <br>
 <% @users.each do |user| %>
- <li><!-- <a href="/users/show"> --><%= user.username %></li>
-  <!-- <%= user.email %> 
-    <% @liquors.each do |liquor| %>
-    <%= liquor.name %> -->
-    <!-- <% end %>-->
+ <li><a href='/users/<%=user.id%>'> <%= user.username %></a></li>
+  
 <% end %>
 <br>
 <li><a href="/liquors/new">Create a new liquor!</a></li>
 <br>
-<li><a href="/users/edit">Edit your account information!</a></li>
+<li><a href="/users/<%=@user.id%>/edit">Edit your account information!</a></li>
 <br>
 <a href="/home">Main Menu</a>
 <br>
