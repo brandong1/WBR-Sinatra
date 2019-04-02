@@ -31,7 +31,7 @@ class UserController < ApplicationController
 
     get '/login' do
         if logged_in?
-            redirect '/users/show'
+            redirect "/users/#{current_user.id}"
         else
             redirect '/' 
         end
@@ -41,8 +41,6 @@ class UserController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            @users = User.all
-            @liquors = Liquor.all
             redirect '/home'
         else
             redirect '/'
@@ -52,18 +50,14 @@ class UserController < ApplicationController
     get '/users' do #RESTful
         @user = current_user
         @users = User.all
-        session[:user_id] = @user.id
-        @user.email = current_user.email
-        @user.password = current_user.password
-        @liquors = Liquor.all
         erb :'/users/index'
     end
 
     get '/users/:id' do #RESTful
         if logged_in?
-             @user = current_user 
-             @liquors = current_user.liquors
-             session[:user_id] = @current_user.id
+             @user = User.find(params[:id]) 
+             @liquors = @user.liquors
+             
              erb :'/users/show'
          else
              redirect :'/users/index'
@@ -87,25 +81,24 @@ class UserController < ApplicationController
 
     get '/users/:id/edit' do #RESTful
         @user = User.find_by(id: params[:id])
-        @liquors = Liquor.all
-        session[:user_id] = @user.id
-        erb :'/users/show'
-    end
-
-    get '/users/edit' do
-        @user = User.find_by(username: params[:username])
-        @user = current_user.username
-        session[:user_id] = current_user.id
-        
         erb :'/users/edit'
     end
 
+    # get '/users/edit' do
+    #     @user = User.find_by(username: params[:username])
+    #     @user = current_user.username
+    #     session[:user_id] = current_user.id
+        
+    #     erb :'/users/edit'
+    # end
+
     patch '/users/:id' do #done
         if logged_in?
-            @user = current_user
-            @user.update(email: params[:email], password: params[:password])
-            @liquors = current_user.liquors
-            @user.save
+            @user = User.find(params[:id])
+            if @user == current_user
+                @user.update(email: params[:email], password: params[:password])
+                @user.save
+            end
             redirect to :'/users'
         else
             redirect '/'
